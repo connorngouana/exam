@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class OrderController
 {
-    private OrderService orderService;
-    private CustomerService customerService;
+    private Order_Service orderService;
+    private CustomerServiceClient customerServiceClient;
 
     @Autowired
-    public OrderController (OrderService orderService , CustomerService customerService)
+    public OrderController (Order_Service orderService , CustomerServiceClient customerServiceClient)
     {
-        this.customerService = customerService;
+        this.customerServiceClient = customerServiceClient;
         this.orderService = orderService;
     }
 
@@ -30,8 +30,8 @@ public class OrderController
     {
         if(order.getAge() > 18)
         {
-            String confirm_orders = customerService.getCustomerId(order);
-            return confirm_orders;
+            String confirm_customers = customerServiceClient.getCustomerId(order);
+            return confirm_customers;
         }
         else
         {
